@@ -1,0 +1,27 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout layout-align="center">
+        <md-button class="md-icon-button" ng-click="home.toSettings()">
+            <md-icon class="fa fa-lg fa-filter"></md-icon>
+        </md-button>
+        <h2>
+            <span>PokeTracker</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="home.contact()">
+            <md-icon class="fa fa-lg fa-envelope"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<div flex layout="column" layout-align="center center">
+    <div layout layout-align="center start" layout-padding>
+        <img src="./images/app/poke_icon.png"/>
+    </div>
+    <div layout layout-align="center start">
+        <md-button flex class="md-primary md-raised" ng-click="home.toScan()">Start scanning!</md-button>
+    </div>
+</div>
+
+<md-toolbar>
+
+</md-toolbar>

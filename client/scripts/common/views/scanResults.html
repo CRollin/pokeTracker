@@ -1,0 +1,68 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout layout-align="center">
+        <md-button class="md-icon-button" ng-click="scanResults.toSettings()">
+            <md-icon class="fa fa-lg fa-filter"></md-icon>
+        </md-button>
+        <h2>
+            <span>PokeTracker</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="scanResults.contact()">
+            <md-icon class="fa fa-lg fa-envelope"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<div flex layout="column" layout-align="center center" ng-show="scanResults.loading">
+    <div layout layout-align="center start" layout-padding class="pokeball">
+        <img src="./images/app/poke_icon.png"/>
+    </div>
+    <div layout layout-align="center start">
+        <md-button flex ng-disabled="true">Looking for nearby Pokemon...</md-button>
+    </div>
+</div>
+
+<md-content flex layout="column" ng-hide="scanResults.loading">
+    <div flex ng-show="scanResults.pokemons.length === 0" layout layout-align="center center" layout-padding>
+        <div>
+            {{scanResults.errorMessage}}
+        </div>
+    </div>
+
+    <md-list flex ng-show="scanResults.pokemons.length !== 0">
+        <div ng-repeat="pokemon in scanResults.pokemons | orderBy:'distance'">
+            <md-list-item>
+                <div class="md-list-item-text" layout layout-align="center center">
+                    <img ng-src="./images/app/{{pokemon.pokemonId}}.png"/>
+                    <div layout layout-padding>
+                        <span>Distance: {{pokemon.distance.toFixed(2)}}km</span>
+                    </div>
+                    <span flex></span>
+                    <div layout layout-padding>
+                        <span>Time left: {{pokemon.expiration_time}}</span>
+                    </div>
+                    <md-button class="md-icon-button md-raised md-primary md-hue-1" ng-click="scanResults.goToPokemon(pokemon)">
+                        <md-icon class="fa fa-lg fa-map"></md-icon>
+                    </md-button>
+                </div>
+            </md-list-item>
+            <md-divider ng-if="!$last"></md-divider>
+        </div>
+    </md-list>
+</md-content>
+
+<md-toolbar>
+    <div class="md-toolbar-tools" layout layout-align="center">
+        <div flex>
+            <div ng-show="scanResults.countdown >= 0">
+                Scan: {{scanResults.countdown}}
+            </div>
+        </div>
+        <div flex layout layout-align="center">
+            <md-button class="md-icon-button md-hue-1 md-raised md-primary" ng-click="scanResults.buttons.control.action()">
+                <md-icon class="{{scanResults.buttons.control.style()}}"></md-icon>
+            </md-button>
+        </div>
+        <span flex></span>
+    </div>
+</md-toolbar>

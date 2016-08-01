@@ -1,0 +1,35 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout layout-align="center">
+        <md-button class="md-icon-button" ng-click="settings.toScan()">
+            <md-icon class="fa fa-lg fa-arrow-left"></md-icon>
+        </md-button>
+        <h2>
+            <span>Filters</span>
+        </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<md-content flex layout>
+    <md-grid-list flex md-cols="4" md-row-height="1:1">
+        <md-grid-tile ng-repeat="pokemon in settings.pokemons" layout>
+            <md-content flex layout layout-align="center start">
+                <md-card flex ng-click="settings.switchStatus(pokemon)">
+                    <i class="fa fa-check-square poke-on fa-lg" ng-show="pokemon.status"></i>
+                    <img ng-src="{{pokemon.img}}"/>
+                </md-card>
+            </md-content>
+        </md-grid-tile>
+    </md-grid-list>
+</md-content>
+
+<md-toolbar>
+    <div class="md-toolbar-tools" layout layout-align="center">
+        <md-button flex class="md-icon-button" ng-click="settings.unselectAll()">
+            Unselect all
+        </md-button>
+        <md-button flex class="md-icon-button" ng-click="settings.selectAll()">
+            Select all
+        </md-button>
+    </div>
+</md-toolbar>
